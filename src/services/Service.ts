@@ -1,9 +1,9 @@
 
 import axios, { AxiosRequestConfig, AxiosRequestHeaders, Method } from 'axios';
-import { tokenName } from '../utils/Constants';
+import { tokenName, urlApi } from '../utils/Constants';
 
 import HttpException  from './HttpException';
-axios.defaults.baseURL = process.env.REACT_APP_MY_SERVICE;
+axios.defaults.baseURL = urlApi;
 axios.defaults.timeout = 10000;
 
 export default class Service {
