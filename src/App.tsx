@@ -1,26 +1,26 @@
+import { CssBaseline } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+import { SnackbarProvider } from 'notistack';
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter } from 'react-router-dom';
+import SnackbarCloseButton from './components/molecules/snackbarCloseButton';
+import Router from './router/router';
+import customTheme from './styles/customTheme';
 
-
-function App():JSX.Element {
+export default function App(): JSX.Element {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <React.StrictMode>
+      <ThemeProvider theme={customTheme}>
+        <CssBaseline />
+        <SnackbarProvider
+          maxSnack={3}
+          action={(key) => <SnackbarCloseButton snacKey={key} />}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
+        </SnackbarProvider>
+      </ThemeProvider>
+    </React.StrictMode>
   );
 }
-
-export default App;
