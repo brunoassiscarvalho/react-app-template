@@ -26,7 +26,7 @@ const customTheme: Theme = createTheme(
       MuiInput: {
         defaultProps: {
           style: {
-            fontFamily: 'Geomanist Book',
+            // fontFamily: 'Geomanist Book',
             fontSize: '.9375rem',
             fontWeight: 500,
             lineHeight: '1.5rem',
@@ -38,7 +38,7 @@ const customTheme: Theme = createTheme(
       MuiInputLabel: {
         defaultProps: {
           style: {
-            fontFamily: 'Geomanist Regular',
+            // fontFamily: 'Geomanist Regular',
             fontSize: '.9375rem',
             fontWeight: 400,
             lineHeight: '1.5rem',
@@ -50,7 +50,7 @@ const customTheme: Theme = createTheme(
       MuiCardHeader: {
         styleOverrides: {
           title: {
-            fontFamily: 'Geomanist Book',
+            // fontFamily: 'Geomanist Book',
             fontSize: '.9375rem',
             fontWeight: 500,
             lineHeight: '1.5rem',
@@ -68,50 +68,23 @@ const customTheme: Theme = createTheme(
       background: {
         default: grey[300],
       },
-    },   
+    },
     typography: {
-      fontFamily: [
-        'Geomanist Regular',
-        'Geomanist Black',
-        'Geomanist Book',
-        'Geomanist Ultra',
-        'Geomanist Thin',
-        'Geomanist Light',
-        'Geomanist Extra Light',
-        'Geomanist Medium',
-        'Geomanist Bold',
-      ].join(','),
+      // fontFamily: [
+      //   'Geomanist Regular',
+      //   'Geomanist Black',
+      //   'Geomanist Book',
+      //   'Geomanist Ultra',
+      //   'Geomanist Thin',
+      //   'Geomanist Light',
+      //   'Geomanist Extra Light',
+      //   'Geomanist Medium',
+      //   'Geomanist Bold',
+      // ].join(','),
     },
     shape: {
       borderRadius: 2,
     },
-    shadows: [
-      'none',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-      '0 0.25rem 0.5rem 0 rgb(0 0 0 / 8%)',
-    ],
   },
   ptBR,
 );

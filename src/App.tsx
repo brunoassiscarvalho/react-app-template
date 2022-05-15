@@ -3,9 +3,9 @@ import { ThemeProvider } from '@mui/material/styles';
 import { SnackbarProvider } from 'notistack';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import SnackbarCloseButton from './components/molecules/snackbarCloseButton';
-import Router from './router/router';
-import customTheme from './styles/customTheme';
+import SnackbarCloseButton from './components/molecules/SnackbarCloseButton';
+import Router from './router/Router';
+import customTheme from './styles/CustomTheme';
 
 export default function App(): JSX.Element {
   return (

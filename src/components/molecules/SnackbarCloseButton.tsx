@@ -1,10 +1,7 @@
-import { Close } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import { Close } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
 
-
-import { SnackbarKey, useSnackbar } from "notistack";
-
-
+import { SnackbarKey, useSnackbar } from 'notistack';
 
 interface ISnackbarCloseButton {
   snacKey: SnackbarKey;

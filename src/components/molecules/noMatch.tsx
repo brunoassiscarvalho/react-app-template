@@ -1,7 +1,8 @@
+import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { HighlightOff } from '@mui/icons-material';
 
-export default function NoMatch(): JSX.Element {
+export default function NoMatch() {
   return (
     <Box display="flex" alignItems="center" justifyContent="center" margin={5}>
       <HighlightOff color="secondary" fontSize="large" />
