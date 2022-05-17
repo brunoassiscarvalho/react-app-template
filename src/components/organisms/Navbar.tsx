@@ -9,15 +9,15 @@ import { projectName } from '../../utils/Constants';
 export default function NavBar() {
   return (
     <AppBar
-      position="fixed"
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
-        borderBottom: '5px solid',
-        borderBottomColor: (theme) => theme.palette.secondary.main,
+        // borderBottom: '5px solid',
+        // borderBottomColor: 'primary.dark',
       }}
-      elevation={0}
+      position='static'
+      elevation={3}
     >
-      <Toolbar variant="dense">
+      <Toolbar>
         <IconButton
           size="large"
           edge="start"
