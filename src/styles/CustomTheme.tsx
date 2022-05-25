@@ -70,6 +70,9 @@ const customTheme: Theme = createTheme(
       },
     },
     typography: {
+      h5:{
+        textAlign:'center'
+      },
       // fontFamily: [
       //   'Geomanist Regular',
       //   'Geomanist Black',

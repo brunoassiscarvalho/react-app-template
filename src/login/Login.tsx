@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
@@ -9,6 +9,9 @@ import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
+import LoginService from './LoginService';
+import HttpException from '../services/HttpException';
+import { useSnackbar } from 'notistack';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -43,13 +46,18 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function SignIn() {
+interface ILogin {
+  loginService?: LoginService;
+}
+
+export default function Login({ loginService = new LoginService() }: ILogin): JSX.Element {
   const classes = useStyles();
   const navigate = useNavigate();
 
+  const { enqueueSnackbar } = useSnackbar();
+
   const [isSending, setIsSending] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', password: '' });
-  const [error, setError] = useState({ isErro: false, message: '' });
+  const [form, setForm] = useState<any>();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
@@ -62,65 +70,71 @@ export default function SignIn() {
     });
   };
 
-  const login = () => {
-    navigate('/main');
-  };
+  useEffect(() => {
+    console.log(form);
+  }, [form]);
+
+  function loginHandler() {
+    setIsSending(true);
+    console.log('login', form);
+    loginService.login(form)
+      .then((res) => { console.log('dfsdfsadfdsf'); navigate('main'); })
+      .catch((e) => {
+        // console.log(e);
+        enqueueSnackbar(e.message, { variant: 'error' });
+        setIsSending(true);
+      });
+  }
 
   return (
-    <Grid container component="main" className={classes.root} spacing={3}>
+    <Grid container className={classes.root} spacing={3}>
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         {!isSending ? (
           <div className={classes.paper}>
-            <Typography component="h1" variant="h5">
+            <Typography component='h1' variant='h5'>
               Sign in
             </Typography>
             <form className={classes.form} noValidate>
               <TextField
-                variant="outlined"
-                margin="normal"
+                variant='outlined'
+                margin='normal'
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id='email'
+                label='Email Address'
+                name='email'
+                autoComplete='email'
                 autoFocus
                 onChange={handleChange}
               />
               <TextField
-                variant="outlined"
-                margin="normal"
+                variant='outlined'
+                margin='normal'
                 required
                 fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
+                name='password'
+                label='Password'
+                type='password'
+                id='password'
+                autoComplete='current-password'
                 onChange={handleChange}
               />
               <Button
                 fullWidth
-                variant="contained"
-                color="primary"
+                variant='contained'
+                color='primary'
                 className={classes.submit}
-                onClick={login}
+                onClick={() => loginHandler()}
               >
                 Entrar
               </Button>
             </form>
           </div>
         ) : (
-          <Box display="flex" justifyContent="center">
+          <Box display='flex' justifyContent='center'>
             <CircularProgress className={classes.circular} />
           </Box>
-        )}
-        {error.isErro && (
-          <Alert severity="error">
-            <AlertTitle>Erro</AlertTitle>
-            {error.message}
-          </Alert>
         )}
       </Grid>
     </Grid>

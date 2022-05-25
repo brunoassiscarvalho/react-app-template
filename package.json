@@ -2,6 +2,15 @@
   "name": "react-app-template",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Bruno Assis Carvalho",
+    "email": "brunoacarvalho.br@gmail.com",
+    "url": "https://brunoassiscarvalho.github.io/portfolio/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brunoassiscarvalho/react-app-template.git"
+  },
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
