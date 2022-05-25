@@ -79,10 +79,11 @@ export default function Login({ loginService = new LoginService() }: ILogin): JS
     console.log('login', form);
     loginService.login(form)
       .then((res) => { console.log('dfsdfsadfdsf'); navigate('main'); })
-      .catch((e) => {
+      .catch((e: HttpException) => {
         // console.log(e);
         enqueueSnackbar(e.message, { variant: 'error' });
-        setIsSending(true);
+      }).finally(() => {
+        setIsSending(false);
       });
   }
 

@@ -29,7 +29,7 @@ export default class Service {
   }
 
   private async requestAuthentication(method: Method, url: string, email: string, password: string, data: any) {
-    const XFactor =  window.btoa(`${email}:${password}`);
+    const XFactor = window.btoa(`${email}:${password}`);
     const token = `Bearer ${sessionStorage.getItem(this.tokenName)}`;
     const headers: any = { 'x-factor': `Basic ${XFactor}`, ...(token && { Authorization: token }) };
     return await this.executeRequest(url, this.objectRequest(method, data, headers));
@@ -47,7 +47,7 @@ export default class Service {
     const headers: any = {};
     return await this.executeRequest(url, this.objectRequest(method, data, headers));
   }
-  private async executeRequest(url: string, data: AxiosRequestConfig) {
+  private async executeRequest(url: string, data: AxiosRequestConfig): Promise<any> {
     try {
       const resp = await axios(url, data);
       return resp.data;
@@ -55,6 +55,7 @@ export default class Service {
       if (error.response?.status === 401) {
         localStorage.clear();
         window.location.assign(window.location.origin);
+        throw new Error('Não autorizado!');
       } else if (error.response?.status === 404) {
         throw new Error('Serviço não localizado');
       }
@@ -62,5 +63,5 @@ export default class Service {
         throw new Error(error?.response?.data || 'Não foi possivel prosseguir com a solicitação');
       }
     }
-  }  
+  }
 }
