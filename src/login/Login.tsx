@@ -76,11 +76,15 @@ export default function Login({ loginService = new LoginService() }: ILogin): JS
 
   function loginHandler() {
     setIsSending(true);
-    console.log('login', form);
+    
     loginService.login(form)
-      .then((res) => { console.log('dfsdfsadfdsf'); navigate('main'); })
+      .then((res) => {
+        console.log({loginsadadfdasf:res});
+        const tokenName = process.env.REACT_APP_STORAGE || '';
+        sessionStorage.setItem(tokenName, JSON.stringify(res.user));
+        navigate('main');
+      })
       .catch((e: HttpException) => {
-        // console.log(e);
         enqueueSnackbar(e.message, { variant: 'error' });
       }).finally(() => {
         setIsSending(false);

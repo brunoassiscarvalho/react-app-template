@@ -5,8 +5,22 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { projectName } from '../../utils/Constants';
+import { Avatar, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-export default function NavBar() {
+interface IUser {
+  email: string;
+  name: string;
+  urlImage: string;
+}
+
+interface INavBar {
+  user: IUser
+}
+
+export default function NavBar({ user }: INavBar) {
+
+  console.log({user});
   return (
     <AppBar
       sx={{
@@ -30,6 +44,10 @@ export default function NavBar() {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {projectName}
         </Typography>
+        {user && <Typography >
+          {user.name || user.email}
+        </Typography>}
+        {user && <Avatar sx={{marginLeft:2}} alt={user.name || user.email} src={user.urlImage} />}
       </Toolbar>
     </AppBar>
   );
