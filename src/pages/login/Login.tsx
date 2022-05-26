@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 import Paper from '@mui/material/Paper';
-import { Alert, AlertTitle, Box, Theme } from '@mui/material';
+import { Alert, AlertTitle, Box, Stack, Theme } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
@@ -12,6 +12,8 @@ import { CircularProgress } from '@mui/material';
 import LoginService from './LoginService';
 import HttpException from '../../services/HttpException';
 import { useSnackbar } from 'notistack';
+import SmartForm from '../../components/organisms/form/SmartForm';
+import { logoUrl } from '../../utils/Constants';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -50,106 +52,75 @@ interface ILogin {
   loginService?: LoginService;
 }
 
-export default function Login({ loginService = new LoginService() }: ILogin): JSX.Element {
+export default function Login({
+  loginService = new LoginService(),
+}: ILogin): JSX.Element {
   const classes = useStyles();
   const navigate = useNavigate();
 
   const { enqueueSnackbar } = useSnackbar();
 
   const [isSending, setIsSending] = useState(false);
-  const [form, setForm] = useState<any>();
+  // const [form, setForm] = useState<any>();
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.currentTarget.value;
-    const name = e.currentTarget.name;
-    setForm((prevState: any) => {
-      return {
-        ...prevState,
-        [name]: value,
-      };
-    });
-  };
-
-  useEffect(() => {
-    console.log(form);
-  }, [form]);
-
-  function loginHandler() {
+  function loginHandler(data: any) {
     setIsSending(true);
-    
-    loginService.login(form)
+    loginService
+      .login(data)
       .then((res) => {
-        console.log({loginsadadfdasf:res});
+        console.log({ loginsadadfdasf: res });
         const tokenName = process.env.REACT_APP_STORAGE || '';
         sessionStorage.setItem(tokenName, JSON.stringify(res.user));
         navigate('main');
       })
       .catch((e: HttpException) => {
         enqueueSnackbar(e.message, { variant: 'error' });
-      }).finally(() => {
+      })
+      .finally(() => {
         setIsSending(false);
       });
   }
 
   return (
-    <Grid container className={classes.root} spacing={3}>
+    <Grid container className={classes.root}>
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        {!isSending ? (
-          <div className={classes.paper}>
-            <Typography component='h1' variant='h5'>
-              Sign in
-            </Typography>
-            <form className={classes.form} noValidate>
+        <Stack padding={10} spacing={3}>
+          <Box component="img" src={logoUrl} />
+          <Typography component="h1" variant="h5">
+            Login
+          </Typography>
+          {!isSending ? (
+            <SmartForm onSubmit={loginHandler}>
               <TextField
-                variant='outlined'
-                margin='normal'
-                required
-                fullWidth
-                id='email'
-                label='Email Address'
-                name='email'
-                autoComplete='email'
+                label="Email Address"
+                name="email"
+                autoComplete="email"
                 autoFocus
-                onChange={handleChange}
               />
               <TextField
-                variant='outlined'
-                margin='normal'
-                required
-                fullWidth
-                name='password'
-                label='Password'
-                type='password'
-                id='password'
-                autoComplete='current-password'
-                onChange={handleChange}
+                name="password"
+                label="Password"
+                type="password"
+                autoComplete="current-password"
               />
+              <Button type="submit">Entrar</Button>
               <Button
                 fullWidth
-                variant='contained'
-                color='primary'
-                className={classes.submit}
-                onClick={() => loginHandler()}
-              >
-                Entrar
-              </Button>
-              <Button
-                fullWidth
-                variant='contained'
-                color='primary'
+                variant="contained"
+                color="primary"
                 className={classes.submit}
                 onClick={() => navigate('/external/new-user')}
               >
                 Novo
               </Button>
-            </form>
-          </div>
-        ) : (
-          <Box display='flex' justifyContent='center'>
-            <CircularProgress className={classes.circular} />
-          </Box>
-        )}
+            </SmartForm>
+          ) : (
+            <Box display="flex" paddingTop={10} justifyContent="center">
+              <CircularProgress className={classes.circular} />
+            </Box>
+          )}
+        </Stack>
       </Grid>
     </Grid>
   );

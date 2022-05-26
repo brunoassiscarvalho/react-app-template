@@ -68,7 +68,7 @@ export function FormItem({
               ? register(name, validations)
               : validations
                 ? register(validations)
-                : register,
+                : register(name),
           errors: errors,
           errorMessage: errorMessage,
           name: name,

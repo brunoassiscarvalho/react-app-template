@@ -4,60 +4,12 @@ import { ptBR } from '@mui/material/locale';
 
 const customTheme: Theme = createTheme(
   {
-    components: {
-      MuiTab: {
-        defaultProps: {
-          style: {
-            minWidth: 45,
-          },
-        },
-      },
+    components: {     
       MuiButton: {
         defaultProps: {
           variant: 'contained',
-          style: {
-            margin:3,
-            fontSize: '1rem',
-            lineHeight: '1rem',
-            textTransform: 'uppercase',
-            padding: '.625rem 1rem',
-          },
-        },
-      },
-      MuiInput: {
-        defaultProps: {
-          style: {
-            // fontFamily: 'Geomanist Book',
-            fontSize: '.9375rem',
-            fontWeight: 500,
-            lineHeight: '1.5rem',
-            borderColor: 'palette.backgroud',
-            padding: '.4375rem 1rem',
-          },
-        },
-      },
-      MuiInputLabel: {
-        defaultProps: {
-          style: {
-            // fontFamily: 'Geomanist Regular',
-            fontSize: '.9375rem',
-            fontWeight: 400,
-            lineHeight: '1.5rem',
-            marginBottom: '.5rem',
-            color: 'black',
-          },
-        },
-      },
-      MuiCardHeader: {
-        styleOverrides: {
-          title: {
-            // fontFamily: 'Geomanist Book',
-            fontSize: '.9375rem',
-            fontWeight: 500,
-            lineHeight: '1.5rem',
-          },
-        },
-      },
+        }
+      }
     },
     palette: {
       primary: {
@@ -71,8 +23,8 @@ const customTheme: Theme = createTheme(
       },
     },
     typography: {
-      h5:{
-        textAlign:'center'
+      h5: {
+        textAlign: 'center',
       },
       // fontFamily: [
       //   'Geomanist Regular',
@@ -86,9 +38,9 @@ const customTheme: Theme = createTheme(
       //   'Geomanist Bold',
       // ].join(','),
     },
-    shape: {
-      borderRadius: 2,
-    },
+    // shape: {
+    //   borderRadius: 2,
+    // },
   },
   ptBR,
 );

@@ -10,7 +10,7 @@ interface IContent {
 
 export default function Content({ title, children, withoutGoBack=false }: IContent): JSX.Element {
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%' }}  >
       {title && <ContentHeader withoutGoBack={withoutGoBack} title={title} />}
       <Box sx={{ width: '100%', paddingTop:3 }}>
         {children}

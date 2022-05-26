@@ -1,81 +1,54 @@
-import { Box, Button, Grid } from '@mui/material';
-import { useEffect } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-// import { Prompt } from 'react-router-dom';
-import { GroupFormItems } from './GroupFormItems';
+import { FormControl, Stack } from '@mui/material';
+import React from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
-interface IForm {
-  children: any;
-  onSubmit: SubmitHandler<any>;
+interface ISmartForm {
   defaultValues?: any;
-  isPrompt?: boolean;
-  values?: any;
-  fieldArrayName?: string;
-  onChange?: (data: any) => void;
-  name?: string;
-  butonAddLabel?: string;
+  children: JSX.Element[] | JSX.Element;
+  onSubmit: (data: string) => void;
 }
 
 export default function SmartForm({
+  defaultValues,
   children,
   onSubmit,
-  isPrompt = true,
-  values,
-  defaultValues,
-  onChange,
-  butonAddLabel,
-}: IForm) {
+}: ISmartForm) {
   const {
-    register,
-    handleSubmit,
+    control,
     formState: { errors },
-    reset,
-    control,
-    formState,
-    setValue,
-    watch,
-  } = useForm<any>({ defaultValues });
-
-  const data = watch();
-
-  useEffect(() => {
-    reset(values);
-  }, [values, reset]);
-
-  useEffect(() => {
-    if (onChange) onChange(data);
-  }, [data, onChange]);
-
-  const baseFormParams = {
     handleSubmit,
-    control,
-    errors,
-    register,
-    setValue,
-  };
-
-
-
+  } = useForm<any>({
+    criteriaMode: 'all',
+  });
+  console.log({ errors });
   return (
-    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-      {/* {isPrompt && (
-        <Prompt
-          when={formState.isDirty && !formState.isSubmitting}
-          message={() =>
-            'Deseja mesmo sair da página? Os dados alterados não serão salvos!'
-          }
-        />
-      )} */}
-      <Grid container spacing={2}>
-        <GroupFormItems
-          butonAddLabel={butonAddLabel}
-          baseFormParams={baseFormParams}
-        >
-          {children}
-        </GroupFormItems>
-      </Grid>
-    </Box>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <Stack spacing={3}>
+        {React.Children.map(children, (child) => {
+          return child.props.name ? (
+            <Controller
+              render={({ field, fieldState }) => (
+                <FormControl>
+                  {React.createElement(child.type, {
+                    ...field,
+                    ...fieldState,
+                    ...child.props,
+                    error: fieldState?.error?.message,
+                  })}
+                </FormControl>
+              )}
+              name={child.props.name}
+              control={control}
+              rules={child.props.validations}
+              defaultValue={
+                defaultValues ? defaultValues[child.props.name] : undefined
+              }
+            />
+          ) : (
+            child
+          );
+        })}
+      </Stack>
+    </form>
   );
 }
-
-
