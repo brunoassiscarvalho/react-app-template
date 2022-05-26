@@ -16,6 +16,7 @@ const customTheme: Theme = createTheme(
         defaultProps: {
           variant: 'contained',
           style: {
+            margin:3,
             fontSize: '1rem',
             lineHeight: '1rem',
             textTransform: 'uppercase',

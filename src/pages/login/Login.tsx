@@ -10,7 +10,7 @@ import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import LoginService from './LoginService';
-import HttpException from '../services/HttpException';
+import HttpException from '../../services/HttpException';
 import { useSnackbar } from 'notistack';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -133,6 +133,15 @@ export default function Login({ loginService = new LoginService() }: ILogin): JS
                 onClick={() => loginHandler()}
               >
                 Entrar
+              </Button>
+              <Button
+                fullWidth
+                variant='contained'
+                color='primary'
+                className={classes.submit}
+                onClick={() => navigate('/external/new-user')}
+              >
+                Novo
               </Button>
             </form>
           </div>
