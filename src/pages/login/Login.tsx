@@ -68,14 +68,12 @@ export default function Login({
   // const [form, setForm] = useState<any>();
 
   const loginHandler = (data: any) => {
-    console.log(data);
     setIsSending(true);
     loginService
       .login(data)
       .then((res) => {
-        console.log({ loginsadadfdasf: res });
         const tokenName = process.env.REACT_APP_STORAGE || '';
-        sessionStorage.setItem(tokenName, JSON.stringify(res.user));
+        sessionStorage.setItem(tokenName, res);
         navigate('main');
       })
       .catch((e: HttpException) => {
