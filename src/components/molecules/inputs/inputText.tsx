@@ -23,11 +23,13 @@ const patternsMask: any = {
       '#': /[1-9]/,
     },
   },
+  cep: {
+    mask: '00000-000',
+  },
 };
 
 const TextMaskCustom = React.forwardRef<HTMLElement, CustomProps>(
   function TextMaskCustom(props, ref) {
-    console.log({ props });
     const { onChange, type, ...other } = props;
     return (
       <IMaskInput
@@ -60,7 +62,7 @@ export default function InputText({
       >
         {label}
       </InputLabel>
-      {format ? (
+      {format && patternsMask[format]? (
         <OutlinedInput
           error={error}
           type={format}

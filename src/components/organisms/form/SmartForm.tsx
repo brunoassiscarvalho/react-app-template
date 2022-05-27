@@ -1,16 +1,21 @@
 import { FormControl, Stack } from '@mui/material';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import {AnyObjectSchema} from 'yup';
+
 
 interface ISmartForm {
   defaultValues?: any;
   children: JSX.Element[] | JSX.Element;
+  resolver?: AnyObjectSchema;
   onSubmit: (data: string) => void;
 }
 
 export default function SmartForm({
   defaultValues,
   children,
+  resolver,
   onSubmit,
 }: ISmartForm) {
   const {
@@ -18,6 +23,7 @@ export default function SmartForm({
     formState: { errors },
     handleSubmit,
   } = useForm<any>({
+    ...(resolver && {resolver: yupResolver(resolver)}),
     criteriaMode: 'all',
   });
   console.log({ errors });

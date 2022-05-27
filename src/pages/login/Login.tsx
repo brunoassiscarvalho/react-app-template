@@ -1,14 +1,17 @@
-import { useState, ChangeEvent, useEffect } from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-
-import Paper from '@mui/material/Paper';
-import { Alert, AlertTitle, Box, Stack, Theme } from '@mui/material';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
+import { useState } from 'react';
+import {
+  Box,
+  Stack,
+  Theme,
+  Typography,
+  Grid,
+  CircularProgress,
+  TextField,
+  Button,
+  Paper,
+} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
-import { CircularProgress } from '@mui/material';
 import LoginService from './LoginService';
 import HttpException from '../../services/HttpException';
 import { useSnackbar } from 'notistack';
@@ -63,7 +66,8 @@ export default function Login({
   const [isSending, setIsSending] = useState(false);
   // const [form, setForm] = useState<any>();
 
-  function loginHandler(data: any) {
+  const loginHandler = (data: any) => {
+    console.log(data);
     setIsSending(true);
     loginService
       .login(data)
@@ -79,7 +83,7 @@ export default function Login({
       .finally(() => {
         setIsSending(false);
       });
-  }
+  };
 
   return (
     <Grid container className={classes.root}>

@@ -2,8 +2,7 @@ import { Box, Grid, Paper } from '@mui/material';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Menu from '../../components/organisms/Menu';
 import Navbar from '../../components/organisms/Navbar';
-import jwtDecode from 'jwt-decode';
-import IUser from '../../interfaces/user';
+
 
 const items = [
   { key: 'consulta', title: 'Consulta' },
