@@ -8,6 +8,8 @@ interface IInputText extends IFormItem {
   label: string;
   format?: any;
   error?: any;
+  autoComplete?: any;
+  autoFocus?:any
 }
 
 interface CustomProps {

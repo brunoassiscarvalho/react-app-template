@@ -1,7 +1,7 @@
 import Content from '../../components/organisms/Content';
 import { Box, Button, Stack } from '@mui/material';
 import SmartForm from '../../components/organisms/form/SmartForm';
-import InputText from '../../components/molecules/inputs/inputText';
+import InputText from '../../components/molecules/inputs/InputText';
 import { logoUrl } from '../../utils/Constants';
 import UserService from './UserService';
 import { useSnackbar } from 'notistack';
@@ -20,7 +20,7 @@ export default function NewUser({ service = new UserService() }: INewUser) {
     email: Yup.string()
       .email('Formato de email inválido')
       .required('Obrigatório'),
-    fone: Yup.string().required('Obrigatório'),
+    phone: Yup.string().required('Obrigatório'),
     password: Yup.string().required('Obrigatório'),
     passwordConfirmation: Yup.string()
       .oneOf([Yup.ref('password'), null], 'As senhas devem ser iguais')
@@ -50,7 +50,7 @@ export default function NewUser({ service = new UserService() }: INewUser) {
           <SmartForm onSubmit={createNewUser} resolver={validationSchema}>
             <InputText name="name" label="Nome" />
             <InputText name="email" type="email" label="Email" />
-            <InputText name="fone" format="tel" label="Telefone" />
+            <InputText name="phone" format="tel" label="Telefone" />
             <InputText name="cep" format="cep" label="CEP" />
             <InputText name="password" type="password" label="Senha" />
             <InputText

@@ -17,6 +17,7 @@ import HttpException from '../../services/HttpException';
 import { useSnackbar } from 'notistack';
 import SmartForm from '../../components/organisms/form/SmartForm';
 import { logoUrl } from '../../utils/Constants';
+import InputText from '../../components/molecules/inputs/InputText';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -96,23 +97,25 @@ export default function Login({
           </Typography>
           {!isSending ? (
             <SmartForm onSubmit={loginHandler}>
-              <TextField
-                label="Email Address"
+              <InputText
+                label="Email"
                 name="email"
                 autoComplete="email"
                 autoFocus
+                validations={{ required: 'Obrigatório' }}
               />
-              <TextField
+              <InputText
                 name="password"
-                label="Password"
+                label="Senha"
                 type="password"
                 autoComplete="current-password"
+                validations={{ required: 'Obrigatório' }}
               />
               <Button type="submit">Entrar</Button>
               <Button
                 fullWidth
                 variant="contained"
-                color="primary"
+                color="secondary"
                 className={classes.submit}
                 onClick={() => navigate('/external/new-user')}
               >
