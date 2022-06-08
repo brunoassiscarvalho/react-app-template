@@ -9,18 +9,16 @@ import customTheme from './styles/CustomTheme';
 
 export default function App(): JSX.Element {
   return (
-    <React.StrictMode>
-      <ThemeProvider theme={customTheme}>
-        <CssBaseline />
-        <SnackbarProvider
-          maxSnack={3}
-          action={(key) => <SnackbarCloseButton snacKey={key} />}
-        >
-          <BrowserRouter>
-            <Router />
-          </BrowserRouter>
-        </SnackbarProvider>
-      </ThemeProvider>
-    </React.StrictMode>
+    <ThemeProvider theme={customTheme}>
+      <CssBaseline />
+      <SnackbarProvider
+        maxSnack={3}
+        action={(key) => <SnackbarCloseButton snacKey={key} />}
+      >
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </SnackbarProvider>
+    </ThemeProvider>
   );
 }
