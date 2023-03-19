@@ -1,24 +1,16 @@
-import { CssBaseline } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
-import { SnackbarProvider } from 'notistack';
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import SnackbarCloseButton from './components/molecules/SnackbarCloseButton';
-import Router from './router/Router';
-import customTheme from './styles/CustomTheme';
+import { Button } from '@mern-monorepo/ui-react-monorepo';
 
-export default function App(): JSX.Element {
+function App(): JSX.Element {
   return (
-    <ThemeProvider theme={customTheme}>
-      <CssBaseline />
-      <SnackbarProvider
-        maxSnack={3}
-        action={(key) => <SnackbarCloseButton snacKey={key} />}
-      >
-        <BrowserRouter>
-          <Router />
-        </BrowserRouter>
-      </SnackbarProvider>
-    </ThemeProvider>
+    <div className="App">
+      <div></div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <Button></Button>
+      </div>
+      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+    </div>
   );
 }
+
+export default App;
