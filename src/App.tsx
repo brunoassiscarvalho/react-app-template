@@ -1,4 +1,4 @@
-import { Button } from '@mern-monorepo/ui-react-monorepo';
+import { Button } from '@mern-monorepo/ui-react-template';
 
 function App(): JSX.Element {
   return (

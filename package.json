@@ -11,7 +11,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@mern-monorepo/ui-react-monorepo": "file:../ui-react-monorepo"
+    "@mern-monorepo/ui-react-template": "file:../ui-react-template"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
