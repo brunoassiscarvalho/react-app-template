@@ -1,15 +1,46 @@
 import { Button } from '@mern-monorepo/ui-react-template';
+import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, Suspense, useEffect, useState } from 'react';
+import { fetchProfileData } from './services/SuspenseServiceApi';
 
-function App(): JSX.Element {
+const resource = fetchProfileData();
+
+function App() {
   return (
-    <div className="App">
-      <div></div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <Button></Button>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </div>
+    <Suspense fallback={<h1>Loading profile...</h1>}>
+      <ProfileDetails />
+      <Suspense fallback={<h1>Loading posts...</h1>}>
+        <ProfileTimeline />
+        <Button />
+        <Suspense fallback={<h1>Loading info...</h1>}>
+          <ServerInfo />
+        </Suspense>
+      </Suspense>
+    </Suspense>
+  );
+}
+
+function ServerInfo() {
+  // Try to read user info, although it might not have loaded yet
+  const info = resource.info.read();
+  console.log('user', info);
+  return <h1>{info}</h1>;
+}
+
+function ProfileDetails() {
+  // Try to read user info, although it might not have loaded yet
+  const user = resource.user.read();
+  return <h1>{user.name}</h1>;
+}
+
+function ProfileTimeline() {
+  // Try to read posts, although they might not have loaded yet
+  const posts = resource.posts.read();
+  return (
+    <ul>
+      {posts.map((post: { id: Key | null | undefined; text: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined }) => (
+        <li key={post.id}>{post.text}</li>
+      ))}
+    </ul>
   );
 }
 
