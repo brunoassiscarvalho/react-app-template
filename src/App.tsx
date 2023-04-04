@@ -1,4 +1,7 @@
 import { Button } from '@mern-monorepo/ui-react-template';
+import customTheme from './styles/CustomTheme';
+import { CssBaseline } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, Suspense, useEffect, useState } from 'react';
 import { fetchProfileData } from './services/SuspenseServiceApi';
 
@@ -6,16 +9,19 @@ const resource = fetchProfileData();
 
 function App() {
   return (
-    <Suspense fallback={<h1>Loading profile...</h1>}>
-      <ProfileDetails />
-      <Suspense fallback={<h1>Loading posts...</h1>}>
-        <ProfileTimeline />
-        <Button />
-        <Suspense fallback={<h1>Loading info...</h1>}>
-          <ServerInfo />
+    <ThemeProvider theme={customTheme}>
+      <CssBaseline />
+      <Suspense fallback={<h1>Loading profile...</h1>}>
+        <ProfileDetails />
+        <Suspense fallback={<h1>Loading posts...</h1>}>
+          <ProfileTimeline />
+          <Button />
+          <Suspense fallback={<h1>Loading info...</h1>}>
+            <ServerInfo />
+          </Suspense>
         </Suspense>
       </Suspense>
-    </Suspense>
+    </ThemeProvider>
   );
 }
 
@@ -26,9 +32,8 @@ function ServerInfo() {
     console.log('user', info);
     return <h1>{info}</h1>;
   } catch (error) {
-    return <h1>Erro no servidor!</h1>
+    return <h1>Erro no servidor!</h1>;
   }
- 
 }
 
 function ProfileDetails() {
