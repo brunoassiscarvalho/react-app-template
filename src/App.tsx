@@ -21,9 +21,14 @@ function App() {
 
 function ServerInfo() {
   // Try to read user info, although it might not have loaded yet
-  const info = resource.info.read();
-  console.log('user', info);
-  return <h1>{info}</h1>;
+  try {
+    const info = resource.info.read();
+    console.log('user', info);
+    return <h1>{info}</h1>;
+  } catch (error) {
+    return <h1>Erro no servidor!</h1>
+  }
+ 
 }
 
 function ProfileDetails() {
