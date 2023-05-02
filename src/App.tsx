@@ -1,4 +1,5 @@
-import { Button } from '@mern-monorepo/ui-react-template';
+import { Button, Dashboard, HeaderNavBar } from '@mern-monorepo/ui-react-template';
+
 import customTheme from './styles/CustomTheme';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
@@ -11,16 +12,19 @@ function App() {
   return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
-      <Suspense fallback={<h1>Loading profile...</h1>}>
-        <ProfileDetails />
-        <Suspense fallback={<h1>Loading posts...</h1>}>
-          <ProfileTimeline />
-          <Button />
-          <Suspense fallback={<h1>Loading info...</h1>}>
-            <ServerInfo />
+      <Dashboard>
+        <Suspense fallback={<h1>Loading profile...</h1>}>
+          <ProfileDetails />
+          <Suspense fallback={<h1>Loading posts...</h1>}>
+            <ProfileTimeline />
+            <Button />
+            <Suspense fallback={<h1>Loading info...</h1>}>
+              <ServerInfo />
+            </Suspense>
           </Suspense>
         </Suspense>
-      </Suspense>
+      </Dashboard>
+      {/* <HeaderNavBar/> */}
     </ThemeProvider>
   );
 }
