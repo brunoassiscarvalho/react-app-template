@@ -1,8 +1,6 @@
-import { CardGrid, FixedBottomBar } from '@mern-monorepo/ui-react-template';
+import { CardGrid } from '@mern-monorepo/ui-react-template';
 import { useNavigate } from 'react-router-dom';
-import AddIcon from '@mui/icons-material/Add';
-import { Box, Fab, TextField } from '@mui/material';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import { Box } from '@mui/material';
 
 export default function TrekGrid() {
   const navigate = useNavigate();
@@ -16,9 +14,6 @@ export default function TrekGrid() {
 
   return (
     <Box width="100%">
-      <FixedBottomBar>
-        <>Teste</>
-      </FixedBottomBar>
       <CardGrid dataSource={testeGrid} />
     </Box>
   );

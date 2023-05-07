@@ -8,6 +8,7 @@ import Profile from './pages/profile/Profile';
 import TrekGrid from './pages/trek/TrekGrid';
 import TrekHome from './pages/trek/TrekHome';
 import TrekDetail from './pages/trek/TrekDetail';
+import TrekForm from './pages/trek/TrekForm';
 
 const router = createBrowserRouter([
   {
@@ -21,10 +22,12 @@ const router = createBrowserRouter([
   {
     path: '/home',
     element: <Home />,
+    handle: { title: 'Home' },
     children: [
       {
         path: 'profile',
         element: <Profile />,
+        handle: { title: 'Perfil' },
       },
       {
         path: 'trek',
@@ -33,10 +36,17 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <TrekGrid />,
+            handle: { title: 'Jornadas' },
           },
           {
             path: 'detail/:idDetail',
             element: <TrekDetail />,
+            handle: { title: 'Detalhes' },
+          },
+          {
+            path: 'new',
+            element: <TrekForm />,
+            handle: { title: 'Nova' },
           },
         ],
       },
