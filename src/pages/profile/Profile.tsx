@@ -7,18 +7,16 @@ const resource = fetchProfileData();
 
 function Profile() {
   return (
-    <Dashboard>
-      <Suspense fallback={<h1>Loading profile...</h1>}>
-        <ProfileDetails />
-        <Suspense fallback={<h1>Loading posts...</h1>}>
-          <ProfileTimeline />
-          <Button />
-          <Suspense fallback={<h1>Loading info...</h1>}>
-            <ServerInfo />
-          </Suspense>
+    <Suspense fallback={<h1>Loading profile...</h1>}>
+      <ProfileDetails />
+      <Suspense fallback={<h1>Loading posts...</h1>}>
+        <ProfileTimeline />
+        <Button label="teste" />
+        <Suspense fallback={<h1>Loading info...</h1>}>
+          <ServerInfo />
         </Suspense>
       </Suspense>
-    </Dashboard>
+    </Suspense>
   );
 }
 
