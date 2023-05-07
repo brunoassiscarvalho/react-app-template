@@ -1,9 +1,12 @@
-import { CardGrid } from '@mern-monorepo/ui-react-template';
+import { CardGrid, FixedBottomBar } from '@mern-monorepo/ui-react-template';
 import { useNavigate } from 'react-router-dom';
+import AddIcon from '@mui/icons-material/Add';
+import { Box, Fab, TextField } from '@mui/material';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 export default function TrekGrid() {
   const navigate = useNavigate();
-  const tetes = [...Array(10).keys()];
+  const tetes = [...Array(60).keys()];
   const testeGrid = tetes.map((item) => ({
     title: `Jornada - ${item}`,
     description:
@@ -11,5 +14,12 @@ export default function TrekGrid() {
     onClick: () => navigate(`detail/Jornada${item}`),
   }));
 
-  return <CardGrid dataSource={testeGrid} />;
+  return (
+    <Box width="100%">
+      <FixedBottomBar>
+        <>Teste</>
+      </FixedBottomBar>
+      <CardGrid dataSource={testeGrid} />
+    </Box>
+  );
 }

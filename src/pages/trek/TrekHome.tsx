@@ -1,15 +1,12 @@
-import { Paper } from '@mui/material';
-import { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { NavBar } from '@mern-monorepo/ui-react-template';
+import { Box, Paper } from '@mui/material';
+import { Outlet } from 'react-router-dom';
 
 export default function TrekHome() {
-  const navigate = useNavigate();
-
-
-
   return (
-    <Paper>
+    <Box paddingTop={5}>
+     
       <Outlet />
-    </Paper>
+    </Box>
   );
 }
