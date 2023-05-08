@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       {
         path: 'profile',
         element: <Profile />,
-        handle: { title: 'Perfil' },
+        handle: { title: 'Perfil', tab: 'profile' },
       },
       {
         path: 'trek',
@@ -36,17 +36,17 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <TrekGrid />,
-            handle: { title: 'Jornadas' },
+            handle: { title: 'Jornadas', tab: 'trek' },
           },
           {
             path: 'detail/:idDetail',
             element: <TrekDetail />,
-            handle: { title: 'Detalhes' },
+            handle: { title: 'Detalhes', tab: 'trek' },
           },
           {
             path: 'new',
             element: <TrekForm />,
-            handle: { title: 'Nova' },
+            handle: { title: 'Nova', tab: 'trek' },
           },
         ],
       },

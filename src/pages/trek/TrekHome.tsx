@@ -21,11 +21,11 @@ export default function TrekHome() {
             <InputBase placeholder="Procurar Trek" inputProps={{ 'aria-label': 'search google maps' }} />
           </Box>
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          <>
+          {/* <>
             {matches.map(({ handle }:any) => (
               <>{handle?.title} / </>
             ))}
-          </>
+          </> */}
           <Button variant="text" onClick={() => navigate('new')} startIcon={<Add />}>
             Novo
           </Button>
