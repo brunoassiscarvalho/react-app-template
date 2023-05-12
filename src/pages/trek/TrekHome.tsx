@@ -12,25 +12,7 @@ export default function TrekHome() {
     <ContentInner
       goBack={() => navigate(-1)}
       title={'Trek'}
-      header={
-        <Stack direction="row" spacing={3} alignItems="center">
-          <Box>
-            <IconButton type="button" aria-label="search">
-              <SearchIcon />
-            </IconButton>
-            <InputBase placeholder="Procurar Trek" inputProps={{ 'aria-label': 'search google maps' }} />
-          </Box>
-          <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          {/* <>
-            {matches.map(({ handle }:any) => (
-              <>{handle?.title} / </>
-            ))}
-          </> */}
-          <Button variant="text" onClick={() => navigate('new')} startIcon={<Add />}>
-            Novo
-          </Button>
-        </Stack>
-      }
+      
     >
       <Outlet />
     </ContentInner>
