@@ -1,4 +1,5 @@
 import { Dashboard } from '@mern-monorepo/ui-react-template';
+import { AddToQueue, Boy } from '@mui/icons-material';
 import { Outlet, useMatches, useNavigate } from 'react-router-dom';
 
 export default function Home() {
@@ -10,8 +11,8 @@ export default function Home() {
     <Dashboard
       onChangeTab={(value) => navigate(value)}
       menu={[
-        { label: 'profile', value: 'profile' },
-        { label: 'trek', value: 'trek' },
+        { value: 'profile', icon: <Boy /> },
+        { value: 'trek', icon: <AddToQueue /> },
       ]}
       startMenu={matches[matches.length - 1].handle.tab}
     >

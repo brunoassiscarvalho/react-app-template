@@ -8,18 +8,16 @@ const customTheme: Theme = createTheme(
       MuiButton: {
         defaultProps: {
           variant: 'contained',
-        }
-      }
+        },
+      },
     },
     palette: {
+      mode: 'dark',
       primary: {
-        main: '#0B2A97',
+        main: '#466b49',
       },
       secondary: {
-        main: green[800],
-      },
-      background: {
-        default: grey[300],
+        main: '#ACC0A8',
       },
     },
     typography: {
@@ -42,7 +40,7 @@ const customTheme: Theme = createTheme(
     //   borderRadius: 2,
     // },
   },
-  ptBR,
+  ptBR
 );
 
 export default customTheme;

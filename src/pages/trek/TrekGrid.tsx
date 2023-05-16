@@ -1,7 +1,7 @@
 import { CardGrid } from '@mern-monorepo/ui-react-template';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, Divider, IconButton, InputBase, Stack } from '@mui/material';
-import { Search as SearchIcon, Add } from '@mui/icons-material';
+import { Box, Button, Divider, IconButton, InputBase, Stack, Typography } from '@mui/material';
+import { Search as SearchIcon, Add, ArrowBack, AddToQueue } from '@mui/icons-material';
 
 export default function TrekGrid() {
   const navigate = useNavigate();
@@ -15,19 +15,26 @@ export default function TrekGrid() {
 
   return (
     <Box width="100%">
-      <Stack direction="row" spacing={3} alignItems="center">
-        <Box>
-          <IconButton type="button" aria-label="search">
-            <SearchIcon />
-          </IconButton>
-          <InputBase placeholder="Procurar Trek" inputProps={{ 'aria-label': 'search google maps' }} />
-        </Box>
-        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-        <Button variant="text" onClick={() => navigate('new')} startIcon={<Add />}>
-          Novo
-        </Button>
+      <Stack spacing={3}>
+        <ArrowBack />
+        <Stack direction="row" spacing={3} alignItems="center">
+          <AddToQueue fontSize="large" />
+          <Typography variant="h4">Jornada</Typography>
+        </Stack>
+        <Stack direction="row" spacing={3} alignItems="center">
+          <Box>
+            <IconButton type="button" aria-label="search">
+              <SearchIcon />
+            </IconButton>
+            <InputBase placeholder="Procurar Trek" inputProps={{ 'aria-label': 'search google maps' }} />
+          </Box>
+          <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+          <Button variant="text" onClick={() => navigate('new')} startIcon={<Add />}>
+            Jornada
+          </Button>
+        </Stack>
+        <CardGrid dataSource={testeGrid} />
       </Stack>
-      <CardGrid dataSource={testeGrid} />
     </Box>
   );
 }

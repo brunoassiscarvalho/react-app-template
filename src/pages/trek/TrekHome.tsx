@@ -9,12 +9,12 @@ export default function TrekHome() {
   const navigate = useNavigate();
   const matches:any = useMatches();
   return (
-    <ContentInner
-      goBack={() => navigate(-1)}
-      title={'Trek'}
+    // <ContentInner
+    //   goBack={() => navigate(-1)}
+    //   title={'Trek'}
       
-    >
+    // >
       <Outlet />
-    </ContentInner>
+    // </ContentInner>
   );
 }
