@@ -1,4 +1,4 @@
-import { Button } from '@mern-monorepo/ui-react-template';
+import { Button, Form, InputSelect, InputText, InputTextLabel } from '@mern-monorepo/ui-react-template';
 import { ArrowBack, AddToQueue, Add } from '@mui/icons-material';
 import { Box, Divider, IconButton, Input, InputBase, Stack, Typography, Button as MUIButton, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
@@ -25,11 +25,9 @@ export default function TrekForm() {
       test: [
         {
           name: 'useFieldArray1',
-          nestedArray: [{ field1: 'field1', field2: 'field2' }],
         },
         {
           name: 'useFieldArray2',
-          nestedArray: [{ field1: 'field1', field2: 'field2' }],
         },
       ],
     },
@@ -48,7 +46,16 @@ export default function TrekForm() {
           <Typography variant="h4">Nova Jornada</Typography>
         </Stack>
         <Box maxWidth={700}>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          {/* <InputSelect name='teste'/> */}
+          <Form onSubmit={onSubmit}>
+            <InputTextLabel name="lastName" label="teste" />
+            {/* <InputText name="firstName" />
+            <InputText name="lastName" /> */}
+            <InputSelect name="gender" options={['female', 'male', 'other']} />
+            <Button type="submit" label={'teste'} />
+          </Form>
+
+          {/* <form onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={3}>
               <FieldArray {...{ control, register, getValues, setValue }} />
               <FormControl>
@@ -89,7 +96,7 @@ export default function TrekForm() {
 
               <Button type="submit" label={'Salvar Jornada'}></Button>
             </Stack>
-          </form>
+          </form> */}
         </Box>
       </Stack>
     </Box>
