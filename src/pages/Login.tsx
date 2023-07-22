@@ -1,15 +1,22 @@
-import { Button, FormBoard, InputTextLabel, LandscapeBoard } from '@mern-monorepo/ui-react-template';
+import { Button, Form, FormBoard, InputText, LandscapeBoard } from '@mern-monorepo/ui-react-template';
+import { SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const navigate = useNavigate();
 
+  const onSubmit: SubmitHandler<any> = (data: any) => {
+    console.log(data);
+  };
+
   return (
     <LandscapeBoard>
       <FormBoard title="Login">
-        <InputTextLabel label="Usuário" />
-        <InputTextLabel label="Senha" />
-        <Button label="Entrar" onClick={() => navigate('/home')} />
+        <Form onSubmit={onSubmit}>
+          <InputText label="Usuário" />
+          <InputText label="Senha" />
+          <Button label="Entrar" onClick={() => navigate('/home')} />
+        </Form>
       </FormBoard>
     </LandscapeBoard>
   );
