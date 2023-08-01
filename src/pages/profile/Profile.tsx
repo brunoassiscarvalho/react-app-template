@@ -25,7 +25,7 @@ function ServerInfo() {
   try {
     const info = resource.info.read();
     console.log('user', info);
-    return <h1>{info}</h1>;
+    return <h1>{info.pong}</h1>;
   } catch (error) {
     return <h1>Erro no servidor!</h1>;
   }

@@ -76,5 +76,5 @@ function fetchPosts() {
 
 function getServerInfo() {
   console.log('fetch info...');
-  return fetch('http://localhost:3005/info').then((res) => res.json());
+  return fetch('http://localhost:3010/info').then((res) => res.json());
 }
