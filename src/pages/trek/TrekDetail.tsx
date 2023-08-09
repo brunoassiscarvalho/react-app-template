@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import 'reactflow/dist/style.css';
+import CustomNodeList from './nodes/CustomNodesList';
 
 export default function TrekDetail() {
   let { idDetail } = useParams<string>();
@@ -17,7 +18,7 @@ export default function TrekDetail() {
     <>
       <>Detail {idDetail}</>
       <div style={{ width: '90vw', height: '90vh' }}>
-        <Flow onNodeDoubleClick={onNodeDoubleClick} />
+        <Flow onNodeDoubleClick={onNodeDoubleClick} nodeTypes={CustomNodeList} />
       </div>
     </>
   );

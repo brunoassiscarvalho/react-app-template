@@ -1,6 +1,6 @@
-import React from 'react';
+import { CustomNode } from '@mern-monorepo/ui-react-template';
 import { Typography } from '@mui/material';
-import CustomNode from '../CustomNode';
+
 
 export default function ScreenNode() {
   return (

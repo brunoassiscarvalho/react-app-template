@@ -1,6 +1,5 @@
-import React from 'react';
 import { Typography } from '@mui/material';
-import CustomNode from '@mern-monorepo/ui-react-template/src/flow/CustomNode';
+import { CustomNode } from '@mern-monorepo/ui-react-template';
 
 export default function EndpointNode() {
   return (
