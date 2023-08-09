@@ -1,4 +1,12 @@
-import { Button, Form, InputAutocomplete, InputSelect, InputText, SmartFormArray, SmartFormGroup } from '@mern-monorepo/ui-react-template';
+import {
+  Button,
+  Form,
+  InputAutocomplete,
+  InputSelect,
+  InputText,
+  SmartFormArray,
+  SmartFormGroup,
+} from '@mern-monorepo/ui-react-template';
 import { ArrowBack, AddToQueue } from '@mui/icons-material';
 import { Box, Stack, Typography } from '@mui/material';
 import { SubmitHandler } from 'react-hook-form';
@@ -18,7 +26,7 @@ export default function TrekForm() {
         </Stack>
         <Box maxWidth={700}>
           <Form onSubmit={onSubmit}>
-            <SmartFormArray arrayName='myArray'>
+            <SmartFormArray arrayName="myArray">
               <InputText name="itemArray1" label="item Array 1" />
               <InputText name="itemArray2" label="item Array 2" />
             </SmartFormArray>

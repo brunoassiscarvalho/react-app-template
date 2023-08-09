@@ -7,14 +7,14 @@ import SearchIcon from '@mui/icons-material/Search';
 
 export default function TrekHome() {
   const navigate = useNavigate();
-  const matches:any = useMatches();
+  const matches: any = useMatches();
   return (
     // <ContentInner
     //   goBack={() => navigate(-1)}
     //   title={'Trek'}
-      
+
     // >
-      <Outlet />
+    <Outlet />
     // </ContentInner>
   );
 }

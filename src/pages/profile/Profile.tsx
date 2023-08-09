@@ -1,6 +1,15 @@
 import { Button, Dashboard } from '@mern-monorepo/ui-react-template';
 
-import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, Suspense, useEffect, useState } from 'react';
+import {
+  JSXElementConstructor,
+  Key,
+  ReactElement,
+  ReactFragment,
+  ReactPortal,
+  Suspense,
+  useEffect,
+  useState,
+} from 'react';
 import { fetchProfileData } from '../../services/SuspenseServiceApi';
 
 const resource = fetchProfileData();
@@ -42,9 +51,22 @@ function ProfileTimeline() {
   const posts = resource.posts.read();
   return (
     <ul>
-      {posts.map((post: { id: Key | null | undefined; text: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined }) => (
-        <li key={post.id}>{post.text}</li>
-      ))}
+      {posts.map(
+        (post: {
+          id: Key | null | undefined;
+          text:
+            | string
+            | number
+            | boolean
+            | ReactElement<any, string | JSXElementConstructor<any>>
+            | ReactFragment
+            | ReactPortal
+            | null
+            | undefined;
+        }) => (
+          <li key={post.id}>{post.text}</li>
+        )
+      )}
     </ul>
   );
 }

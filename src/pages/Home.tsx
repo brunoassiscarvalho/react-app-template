@@ -6,9 +6,8 @@ export default function Home() {
   const navigate = useNavigate();
   const matches: any = useMatches();
   const startMenu = matches[matches.length - 1].handle.tab;
-   
 
- console.log({startMenu});
+  console.log({ startMenu });
   return (
     <Dashboard
       onChangeTab={(value) => navigate(value)}
