@@ -1,13 +1,13 @@
 // import { NodeTypes } from '@mern-monorepo/ui-react-template';
 import { NodeTypes } from '@mern-monorepo/ui-react-template';
-import EndpointNode from './EndpointNode';
+import JobNode from './JobNode';
 import ScreenNode from './ScreenNode';
 import StartNode from './StartNode';
 
 const CustomNodeList: NodeTypes = {
-  endpointNode: EndpointNode,
-  startNode: StartNode,
-  screenNode: ScreenNode,
+  job: JobNode,
+  start: StartNode,
+  screen: ScreenNode,
 };
 
 export default CustomNodeList;

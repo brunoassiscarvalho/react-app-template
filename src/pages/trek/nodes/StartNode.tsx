@@ -3,7 +3,7 @@ import { CustomNode } from '@mern-monorepo/ui-react-template';
 
 export default function StartNode() {
   return (
-    <CustomNode>
+    <CustomNode model="OutputOnly">
       <Typography variant="h5"> Inicio</Typography>
     </CustomNode>
   );
