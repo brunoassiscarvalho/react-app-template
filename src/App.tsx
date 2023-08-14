@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Profile from './pages/profile/Profile';
 import TrekGrid from './pages/trek/TrekGrid';
 import TrekHome from './pages/trek/TrekHome';
-import TrekDetail from './pages/trek/TrekDetail';
+import TrekDashboard from './pages/trek/TrekDashboard';
 import TrekForm from './pages/trek/TrekForm';
 
 const router = createBrowserRouter([
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'detail/:idDetail',
-            element: <TrekDetail />,
+            element: <TrekDashboard />,
             handle: { title: 'Detalhes', tab: 'trek' },
           },
           {

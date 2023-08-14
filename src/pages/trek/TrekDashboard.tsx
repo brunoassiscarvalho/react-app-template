@@ -19,7 +19,7 @@ const intialFlow = [
   },
 ];
 
-export default function TrekDetail() {
+export default function TrekDashboard() {
   let { idDetail } = useParams<string>();
   const navigate = useNavigate();
 
