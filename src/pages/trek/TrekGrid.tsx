@@ -2,16 +2,36 @@ import { CardGrid } from '@mern-monorepo/ui-react-template';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Divider, IconButton, InputBase, Stack, Typography } from '@mui/material';
 import { Search as SearchIcon, Add, ArrowBack, AddToQueue } from '@mui/icons-material';
+import { useEffect, useState } from 'react';
 
 export default function TrekGrid() {
   const navigate = useNavigate();
-  const tetes = [...Array(60).keys()];
-  const testeGrid = tetes.map((item) => ({
-    title: `Jornada - ${item}`,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    onClick: () => navigate(`detail/Jornada${item}`),
-  }));
+
+  const [treks, setTreks] = useState();
+
+  useEffect(() => {
+    fetch('http://localhost:3010/trek', {
+      method: 'GET',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setTreks(
+          data.map(({ _id }:any) => ({
+            title: _id,
+            description: _id,
+            onClick: () => navigate(`detail/${_id}`),
+          }))
+        );
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
 
   return (
     <Box width="100%">
@@ -33,7 +53,7 @@ export default function TrekGrid() {
             Jornada
           </Button>
         </Stack>
-        <CardGrid dataSource={testeGrid} />
+        {!!treks && <CardGrid dataSource={treks} />}
       </Stack>
     </Box>
   );

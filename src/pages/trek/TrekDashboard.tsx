@@ -5,24 +5,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import 'reactflow/dist/style.css';
 import CustomNodeList from './nodes/CustomNodesList';
 
-const intialFlow = [
-  {
-    id: '1',
-    position: { x: 0, y: 0 },
-    type: 'start',
-  },
-
-  {
-    id: '2',
-    position: { x: 200, y: 0 },
-    type: 'screen',
-  },
-];
-
 export default function TrekDashboard() {
   const navigate = useNavigate();
   let { idDetail } = useParams<string>();
   const [dataFlow, setDataFlow] = useState<FlowObject>();
+  const [intialFlow, setIntialFlow] = useState<FlowObject | null>(null);
 
   const onNodeDoubleClick = useCallback((event: React.MouseEvent, node: any) => {
     event.preventDefault();
@@ -36,25 +23,63 @@ export default function TrekDashboard() {
 
   useEffect(() => {
     let timeout = setTimeout(() => {
+      updateTrek();
       console.log('time', dataFlow);
-    }, 3000);
+    }, 1000);
 
-    return () => {
-      console.log('end time');
+    return () => {      
       clearTimeout(timeout);
     };
   }, [dataFlow]);
+
+  useEffect(() => {
+    fetch(
+      `http://localhost:3010/trek/${idDetail}?` +
+        new URLSearchParams({
+          foo: 'value',
+          bar: '2',
+        }),
+      {
+        method: 'GET',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        }),
+      }
+    )
+      .then((response) => response.json())
+      .then(({ edges, nodes, viewport }) => {
+        console.log({ get: { edges, nodes, viewport } });
+        setIntialFlow({ edges, nodes, viewport });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+
+  const updateTrek = async () => {
+    await fetch('http://localhost:3010/trek', {
+      method: 'PUT',
+      body: JSON.stringify({ ...dataFlow, _id: idDetail }),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      }),
+    });
+  };
 
   return (
     <>
       <>Detail {idDetail}</>
       <div style={{ width: '90vw', height: '90vh' }}>
-        <Flow
-          onNodeDoubleClick={onNodeDoubleClick}
-          nodeTypes={CustomNodeList}
-          flowData={intialFlow}
-          onChange={changeFlow}
-        />
+        {!!intialFlow && (
+          <Flow
+            onNodeDoubleClick={onNodeDoubleClick}
+            nodeTypes={CustomNodeList}
+            flowData={intialFlow}
+            onChange={changeFlow}
+          />
+        )}
       </div>
     </>
   );
