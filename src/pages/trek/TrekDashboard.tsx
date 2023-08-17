@@ -18,21 +18,25 @@ export default function TrekDashboard() {
 
   const changeFlow = (data: FlowObject) => {
     setDataFlow(data);
-    console.log('changedddd', data);
   };
 
   useEffect(() => {
     let timeout = setTimeout(() => {
-      updateTrek();
-      console.log('time', dataFlow);
+      if (dataFlow && idDetail) updateTrek();
     }, 1000);
 
-    return () => {      
+    return () => {
       clearTimeout(timeout);
     };
   }, [dataFlow]);
 
   useEffect(() => {
+    if (idDetail) {
+      getTrek();
+    }
+  }, [idDetail]);
+
+  const getTrek = () => {
     fetch(
       `http://localhost:3010/trek/${idDetail}?` +
         new URLSearchParams({
@@ -48,14 +52,13 @@ export default function TrekDashboard() {
       }
     )
       .then((response) => response.json())
-      .then(({ edges, nodes, viewport }) => {
-        console.log({ get: { edges, nodes, viewport } });
-        setIntialFlow({ edges, nodes, viewport });
+      .then((data) => {
+        setIntialFlow(data);
       })
       .catch((err) => {
         console.log(err.message);
       });
-  }, []);
+  };
 
   const updateTrek = async () => {
     await fetch('http://localhost:3010/trek', {

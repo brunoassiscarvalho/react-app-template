@@ -20,13 +20,11 @@ export default function TrekGrid() {
       .then((response) => response.json())
       .then((data) => {
         setTreks(
-          data.map(({ _id }:any) => ({
-            title: _id,
-            description: _id,
-            onClick: () => navigate(`detail/${_id}`),
+          data.map((item: any) => ({
+            ...item,
+            onClick: () => navigate(`detail/${item._id}`),
           }))
         );
-        console.log(data);
       })
       .catch((err) => {
         console.log(err.message);

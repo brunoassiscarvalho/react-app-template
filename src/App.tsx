@@ -9,6 +9,7 @@ import TrekGrid from './pages/trek/TrekGrid';
 import TrekHome from './pages/trek/TrekHome';
 import TrekDashboard from './pages/trek/TrekDashboard';
 import TrekForm from './pages/trek/TrekForm';
+import TrekNew from './pages/trek/TrekNew';
 
 const router = createBrowserRouter([
   {
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'new',
-            element: <TrekForm />,
+            element: <TrekNew />,
             handle: { title: 'Nova', tab: 'trek' },
           },
         ],
