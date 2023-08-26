@@ -3,13 +3,20 @@ interface PropsRequest {
   url: string;
 }
 
+import { enqueueSnackbar } from '@mern-monorepo/ui-react-template';
 import { useEffect, useState } from 'react';
+import errorHandler from '../services/ErrorHandler';
 
 export default function useRequest(props: PropsRequest) {
-  const [params, setParams] = useState(null);
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [params, setParams] = useState<any>(null);
+  const [data, setData] = useState<any>(null);
+  const [error, setError] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log({ useEffect: error });
+    if (!!error) enqueueSnackbar(error.message, { variant: 'error' });
+  }, [error]);
 
   useEffect(() => {
     console.log({ params });
@@ -28,13 +35,14 @@ export default function useRequest(props: PropsRequest) {
           console.log({ response });
           setData(response);
         } catch (err: any) {
-          console.log({ err });
-          setError(err);
+
+          console.log({err})
+          setError(errorHandler(err));
         } finally {
           setLoading(false);
         }
       })();
   }, [params]);
 
-  return { setParams, data, error, loading };
+  return { sendRequest: setParams, data, error, loading };
 }

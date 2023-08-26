@@ -1,74 +1,61 @@
-import { Button, Dashboard } from '@mern-monorepo/ui-react-template';
+import { Component, Suspense, useEffect, useState } from 'react';
+import { fetchData } from '../../services/SuspenseServiceApi';
+import ErrorBoundary from '../../ErroBoudary';
 
-import {
-  JSXElementConstructor,
-  Key,
-  ReactElement,
-  ReactFragment,
-  ReactPortal,
-  Suspense,
-  useEffect,
-  useState,
-} from 'react';
-import { fetchProfileData } from '../../services/SuspenseServiceApi';
+export default function Profile() {
+  const resource = fetchData({ url: 'http://localhost:3010/info/erro', method: 'GET' });
 
-const resource = fetchProfileData();
-
-function Profile() {
   return (
     <Suspense fallback={<h1>Loading profile...</h1>}>
-      <ProfileDetails />
-      <Suspense fallback={<h1>Loading posts...</h1>}>
-        <ProfileTimeline />
+      {/* <ProfileTimeline resource={resource} /> */}
+      <ProfileDetails resource={resource} />
+      {/* <Suspense fallback={<h1>Loading posts...</h1>}>
         <Button label="teste" />
         <Suspense fallback={<h1>Loading info...</h1>}>
           <ServerInfo />
         </Suspense>
-      </Suspense>
+      </Suspense> */}
     </Suspense>
   );
 }
 
-function ServerInfo() {
+function ProfileDetails({ resource }: any) {
   // Try to read user info, although it might not have loaded yet
-  try {
-    const info = resource.info.read();
+  const info = resource.info.read();
 
-    return <h1>{info.pong}</h1>;
-  } catch (error) {
-    return <h1>Erro no servidor!</h1>;
-  }
+    return <h1>{info}</h1>;
 }
 
-function ProfileDetails() {
-  // Try to read user info, although it might not have loaded yet
-  const user = resource.user.read();
-  return <h1>{user.name}</h1>;
-}
-
-function ProfileTimeline() {
+function ProfileTimeline({ resource }: any) {
   // Try to read posts, although they might not have loaded yet
   const posts = resource.posts.read();
+
   return (
     <ul>
-      {posts.map(
-        (post: {
-          id: Key | null | undefined;
-          text:
-            | string
-            | number
-            | boolean
-            | ReactElement<any, string | JSXElementConstructor<any>>
-            | ReactFragment
-            | ReactPortal
-            | null
-            | undefined;
-        }) => (
-          <li key={post.id}>{post.text}</li>
-        )
-      )}
+      {posts.map((post: { id: string; text: string }) => (
+        <li key={post.id}>{post.text}</li>
+      ))}
     </ul>
   );
 }
 
-export default Profile;
+// function ErrorBoundary(props:any) {
+//   const [error, setError] = useState<any>(null);
+
+//   useEffect(() => {
+//     // Catch errors thrown by child components
+//     const handleErrors = (err:any) => {
+//       setError(err);
+//     };
+//     window.addEventListener('error', handleErrors);
+//     return () => {
+//       window.removeEventListener('error', handleErrors);
+//     };
+//   }, []);
+
+//   if (error) {
+//     return <h1>Something went wrong: {error?.message || "Não foi possível realizar a ação"}</h1>;
+//   }
+
+//   return props.children;
+// }

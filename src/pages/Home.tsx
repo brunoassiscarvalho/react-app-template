@@ -1,5 +1,5 @@
 import { Dashboard } from '@mern-monorepo/ui-react-template';
-import { AddToQueue, Boy } from '@mui/icons-material';
+import { AddToQueue, Boy , AccessTimeFilledTwoTone} from '@mui/icons-material';
 import { Outlet, useMatches, useNavigate } from 'react-router-dom';
 
 export default function Home() {
@@ -12,6 +12,7 @@ export default function Home() {
       onChangeTab={(value) => navigate(value)}
       menu={[
         { value: 'profile', icon: <Boy /> },
+        { value: 'transaction', icon: <AccessTimeFilledTwoTone /> },
         { value: 'trek', icon: <AddToQueue /> },
       ]}
       startMenu={startMenu}

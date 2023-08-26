@@ -1,7 +1,7 @@
 import { Button, Form, InputText } from '@mern-monorepo/ui-react-template';
 import { ArrowBack, AddToQueue } from '@mui/icons-material';
 import { Box, Stack, Typography } from '@mui/material';
-import { SubmitHandler } from 'react-hook-form';
+
 import useRequest from '../../hooks/useRequest';
 
 const initialTrek = {
@@ -54,20 +54,17 @@ const initialTrek = {
 };
 
 export default function TrekNew() {
-  const { setParams, data, loading, error } = useRequest({ url: 'http://localhost:3010/trek', method: 'POST' });
+  const { sendRequest, data, loading, error } = useRequest({ url: 'http://localhost:3010/trek', method: 'POST' });
 
-  const onSubmit: SubmitHandler<any> = (data: any) => {
-    setParams({ ...data, ...initialTrek });
+  const onSubmit: any = (data: any) => {
+    sendRequest({ ...data, ...initialTrek });
   };
 
+  
+
+
   return (
-    <Box width="100%">
-      <Stack spacing={3}>
-        <ArrowBack />
-        <Stack direction="row" spacing={3} alignItems="center">
-          <AddToQueue fontSize="large" />
-          <Typography variant="h4">Nova Jornada</Typography>
-        </Stack>
+    
         <Box maxWidth={700}>
           <Form onSubmit={onSubmit}>
             <InputText name="title" label="Título" />
@@ -75,7 +72,5 @@ export default function TrekNew() {
             <Button type="submit" label="teste" />
           </Form>
         </Box>
-      </Stack>
-    </Box>
   );
 }

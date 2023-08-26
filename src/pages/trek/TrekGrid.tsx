@@ -34,11 +34,7 @@ export default function TrekGrid() {
   return (
     <Box width="100%">
       <Stack spacing={3}>
-        <ArrowBack />
-        <Stack direction="row" spacing={3} alignItems="center">
-          <AddToQueue fontSize="large" />
-          <Typography variant="h4">Jornada</Typography>
-        </Stack>
+       
         <Stack direction="row" spacing={3} alignItems="center">
           <Box>
             <IconButton type="button" aria-label="search">

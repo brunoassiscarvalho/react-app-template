@@ -8,8 +8,10 @@ import Profile from './pages/profile/Profile';
 import TrekGrid from './pages/trek/TrekGrid';
 import TrekHome from './pages/trek/TrekHome';
 import TrekDashboard from './pages/trek/TrekDashboard';
-import TrekForm from './pages/trek/TrekForm';
 import TrekNew from './pages/trek/TrekNew';
+import { SnackbarProvider } from '@mern-monorepo/ui-react-template';
+import Transaction from './pages/profile/Transaction';
+import Sucesso from './pages/profile/Sucesso';
 
 const router = createBrowserRouter([
   {
@@ -26,9 +28,20 @@ const router = createBrowserRouter([
     handle: { title: 'Home' },
     children: [
       {
+        index: true,
         path: 'profile',
         element: <Profile />,
         handle: { title: 'Perfil', tab: 'profile' },
+      },
+      {
+        path: 'transaction',
+        element: <Transaction />,
+        handle: { title: 'Trasações', tab: 'transaction' },
+      },
+      {
+        path: 'transaction/sucesso',
+        element: <Sucesso />,
+        handle: { title: 'Sucesso', tab: 'transaction' },
       },
       {
         path: 'trek',
@@ -59,7 +72,9 @@ export default function App() {
   return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
-      <RouterProvider router={router} />
+      <SnackbarProvider>
+        <RouterProvider router={router} />
+      </SnackbarProvider>
     </ThemeProvider>
   );
 }

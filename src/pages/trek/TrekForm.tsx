@@ -9,45 +9,35 @@ import {
 } from '@mern-monorepo/ui-react-template';
 import { ArrowBack, AddToQueue } from '@mui/icons-material';
 import { Box, Stack, Typography } from '@mui/material';
-import { SubmitHandler } from 'react-hook-form';
 
 export default function TrekForm() {
-  const onSubmit: SubmitHandler<any> = (data: any) => {
+  const onSubmit: any = (data: any) => {
     console.log(data);
   };
 
   return (
-    <Box width="100%">
-      <Stack spacing={3}>
-        <ArrowBack />
-        <Stack direction="row" spacing={3} alignItems="center">
-          <AddToQueue fontSize="large" />
-          <Typography variant="h4">Nova Jornada</Typography>
-        </Stack>
-        <Box maxWidth={700}>
-          <Form onSubmit={onSubmit}>
-            <SmartFormArray arrayName="myArray">
-              <InputText name="itemArray1" label="item Array 1" />
-              <InputText name="itemArray2" label="item Array 2" />
-            </SmartFormArray>
-            <InputText name="lastName" label="teste" />
-            <SmartFormGroup groupName="Grupo">
-              <InputText name="itemGrupo1" label="item Grupo 1" />
-              <InputText name="itemGrupo2" label="item Grupo 2" />
-            </SmartFormGroup>
-            <InputSelect
-              name="gender"
-              options={[
-                { id: 'GET', label: 'GET' },
-                { id: 'POST', label: 'POST' },
-              ]}
-              label="metodo"
-            />
-            <InputAutocomplete options={top100Films} name={'filme'} label={'Filme'} />
-            <Button type="submit" label="teste" />
-          </Form>
-        </Box>
-      </Stack>
+    <Box maxWidth={700}>
+      <Form onSubmit={onSubmit}>
+        <SmartFormArray arrayName="myArray">
+          <InputText name="itemArray1" label="item Array 1" />
+          <InputText name="itemArray2" label="item Array 2" />
+        </SmartFormArray>
+        <InputText name="lastName" label="teste" />
+        <SmartFormGroup groupName="Grupo">
+          <InputText name="itemGrupo1" label="item Grupo 1" />
+          <InputText name="itemGrupo2" label="item Grupo 2" />
+        </SmartFormGroup>
+        <InputSelect
+          name="gender"
+          options={[
+            { id: 'GET', label: 'GET' },
+            { id: 'POST', label: 'POST' },
+          ]}
+          label="metodo"
+        />
+        <InputAutocomplete options={top100Films} name={'filme'} label={'Filme'} />
+        <Button type="submit" label="teste" />
+      </Form>
     </Box>
   );
 }

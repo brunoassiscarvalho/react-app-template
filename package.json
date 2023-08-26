@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@mern-monorepo/ui-react-template": "file:../ui-react-template",
+    "axios": "^1.4.0",
     "react-router-dom": "^6.11.0"
   },
   "devDependencies": {
