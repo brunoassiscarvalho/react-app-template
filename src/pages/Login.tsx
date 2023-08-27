@@ -15,7 +15,7 @@ export default function Login() {
         <Form onSubmit={onSubmit}>
           <InputText label="Usuário" />
           <InputText label="Senha" />
-          <Button label="Entrar" onClick={() => navigate('/home')} />
+          <Button onClick={() => navigate('/home')} >Entrar</Button>
         </Form>
       </FormBoard>
     </LandscapeBoard>

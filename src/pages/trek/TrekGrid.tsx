@@ -1,7 +1,7 @@
 import { CardGrid } from '@mern-monorepo/ui-react-template';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, Divider, IconButton, InputBase, Stack, Typography } from '@mui/material';
-import { Search as SearchIcon, Add, ArrowBack, AddToQueue } from '@mui/icons-material';
+import { Box, Button, Divider, IconButton, InputBase, Stack } from '@mui/material';
+import { Search as SearchIcon, Add} from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 
 export default function TrekGrid() {
@@ -22,7 +22,7 @@ export default function TrekGrid() {
         setTreks(
           data.map((item: any) => ({
             ...item,
-            onClick: () => navigate(`detail/${item._id}`),
+            onClick: () => navigate(`${item._id}`),
           }))
         );
       })
@@ -33,8 +33,7 @@ export default function TrekGrid() {
 
   return (
     <Box width="100%">
-      <Stack spacing={3}>
-       
+      <Stack spacing={3}>       
         <Stack direction="row" spacing={3} alignItems="center">
           <Box>
             <IconButton type="button" aria-label="search">

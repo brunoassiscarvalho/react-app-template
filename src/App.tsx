@@ -12,6 +12,7 @@ import TrekNew from './pages/trek/TrekNew';
 import { SnackbarProvider } from '@mern-monorepo/ui-react-template';
 import Transaction from './pages/profile/Transaction';
 import Sucesso from './pages/profile/Sucesso';
+import ScreenDashboard from './pages/trek/screen/ScreenDashboard';
 
 const router = createBrowserRouter([
   {
@@ -53,9 +54,14 @@ const router = createBrowserRouter([
             handle: { title: 'Jornadas', tab: 'trek' },
           },
           {
-            path: 'detail/:idDetail',
+            path: ':idDetail',
             element: <TrekDashboard />,
             handle: { title: 'Detalhes', tab: 'trek' },
+          },
+          {
+            path: ':idDetail/screen/:idScreen',
+            element: <ScreenDashboard />,
+            handle: { title: 'Tela', tab: 'trek' },
           },
           {
             path: 'new',

@@ -9,11 +9,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.8",
     "@mern-monorepo/ui-react-template": "file:../ui-react-template",
+    "@mui/icons-material": "^5.14.6",
+    "@mui/material": "^5.14.6",
     "axios": "^1.4.0",
+    "react-grid-layout": "^1.3.4",
     "react-router-dom": "^6.11.0"
   },
   "devDependencies": {
+    "@types/react-grid-layout": "^1.3.2",
     "@vitejs/plugin-react-swc": "^3.0.0",
     "vite": "^4.2.0"
   }

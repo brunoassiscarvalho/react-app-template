@@ -13,7 +13,7 @@ export default function TrekDashboard() {
 
   const onNodeDoubleClick = useCallback((event: React.MouseEvent, node: any) => {
     event.preventDefault();
-    navigate(`new/${node.type}`);
+    navigate(`${node.type}/${node.id}`);
   }, []);
 
   const changeFlow = (data: FlowObject) => {

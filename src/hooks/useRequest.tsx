@@ -9,7 +9,7 @@ import errorHandler from '../services/ErrorHandler';
 
 export default function useRequest(props: PropsRequest) {
   const [params, setParams] = useState<any>(null);
-  const [data, setData] = useState<any>(null);
+  const [response, setResponse] = useState<any>(null);
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -33,7 +33,7 @@ export default function useRequest(props: PropsRequest) {
             }),
           });
           console.log({ response });
-          setData(response);
+          setResponse(response);
         } catch (err: any) {
 
           console.log({err})
@@ -44,5 +44,5 @@ export default function useRequest(props: PropsRequest) {
       })();
   }, [params]);
 
-  return { sendRequest: setParams, data, error, loading };
+  return { sendRequest: setParams, response, error, loading };
 }
