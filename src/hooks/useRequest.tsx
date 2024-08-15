@@ -1,48 +1,52 @@
-interface PropsRequest {
-  method: RequestInit['method'];
-  url: string;
+import { enqueueSnackbar } from '@mern-monorepo/ui-react-template';
+import { NavigateFunction, To, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+interface PropsTransaction<T> {
+  promise: Promise<T>;
+  success?: {
+    message?: string;
+    callback?: (response:any) => void;
+    navigate?: any;
+  };
+  error?: {
+    message?: string;
+    callback?: (error:any) => void;
+    navigate?: any;
+  };
 }
 
-import { enqueueSnackbar } from '@mern-monorepo/ui-react-template';
-import { useEffect, useState } from 'react';
-import errorHandler from '../services/ErrorHandler';
-
-export default function useRequest(props: PropsRequest) {
-  const [params, setParams] = useState<any>(null);
+export default function useTransaction() {
+  const navigate = useNavigate();
+  const [request, setRequest] = useState<PropsTransaction<any>>();
+  const [loading, setLoading] = useState<boolean>(false);
   const [response, setResponse] = useState<any>(null);
   const [error, setError] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log({ useEffect: error });
-    if (!!error) enqueueSnackbar(error.message, { variant: 'error' });
-  }, [error]);
+    if (request) onRequest(request);
+  }, [request]);
 
-  useEffect(() => {
-    console.log({ params });
-    if (params)
-      (async function () {
-        try {
-          setLoading(true);
-          const response: any = await fetch(props.url, {
-            method: props.method,
-            body: JSON.stringify(params),
-            headers: new Headers({
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
-            }),
-          });
-          console.log({ response });
-          setResponse(response);
-        } catch (err: any) {
+  const onRequest = ({ promise, success }: PropsTransaction<any>) => {
+    setLoading(true);
+    promise
+      .then((res) => {
+        console.log(res);
+        setResponse(res);
+        if (success?.message)
+          enqueueSnackbar(success.message || 'Transação realizada com sucesso', { variant: 'success' });
+        if (success?.navigate) navigate(success.navigate);
+        if(success?.callback) success?.callback(res);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err);
+        enqueueSnackbar(err.message, { variant: 'error' });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
-          console.log({err})
-          setError(errorHandler(err));
-        } finally {
-          setLoading(false);
-        }
-      })();
-  }, [params]);
-
-  return { sendRequest: setParams, response, error, loading };
+  return { sendRequest: setRequest, loading, response, error };
 }

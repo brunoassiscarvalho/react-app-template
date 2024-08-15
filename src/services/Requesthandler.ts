@@ -5,13 +5,10 @@ import errorHandler from './ErrorHandler';
 
 axios.defaults.baseURL = urlApi;
 // axios.defaults.timeout = 10000;
-export default class Service {
-  public async requestBasic(method: Method, url: string, data?: any) {
-    const headers: any = {};
-    return await this.executeRequest(url, this.objectRequest(method, data, headers));
-  }
+export default class Requesthandler {
 
-  public async sendSecureRequest(method: Method, url: string, params?: any): Promise<any> {
+
+  public async sendRequest(method: Method, url: string, params?: any): Promise<any> {
     if (params?.password && params?.email) {
       const { email, password, ...rest } = params;
       return await this.requestAuthentication(method, url, email, password, rest);
@@ -29,6 +26,12 @@ export default class Service {
     if (method.toUpperCase() === 'GET') return { ...values, ...(!!data && { params: data }) };
     return { ...values, ...(!!data && { data: data }) };
   }
+
+  private async requestBasic(method: Method, url: string, data?: any) {
+    const headers: any = {};
+    return await this.executeRequest(url, this.objectRequest(method, data, headers));
+  }
+
   private async requestSecure(method: Method, url: string, data?: any) {
     return await this.requestServer(method, url, data, 'Bearer');
   }

@@ -1,6 +1,4 @@
-import { createTheme, Theme } from '@mui/material';
-import { grey, green, lime, indigo } from '@mui/material/colors';
-import { ptBR } from '@mui/material/locale';
+import { createTheme, Theme, localePtBR } from '@mern-monorepo/ui-react-template';
 
 const customTheme: Theme = createTheme(
   {
@@ -24,23 +22,9 @@ const customTheme: Theme = createTheme(
       h5: {
         textAlign: 'center',
       },
-      // fontFamily: [
-      //   'Geomanist Regular',
-      //   'Geomanist Black',
-      //   'Geomanist Book',
-      //   'Geomanist Ultra',
-      //   'Geomanist Thin',
-      //   'Geomanist Light',
-      //   'Geomanist Extra Light',
-      //   'Geomanist Medium',
-      //   'Geomanist Bold',
-      // ].join(','),
     },
-    // shape: {
-    //   borderRadius: 2,
-    // },
   },
-  ptBR
+  localePtBR
 );
 
 export default customTheme;
