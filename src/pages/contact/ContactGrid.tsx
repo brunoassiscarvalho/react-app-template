@@ -11,24 +11,24 @@ import {
   IconSearch,
   IconAdd,
 } from '@mern-monorepo/ui-react-template';
-import ExempleService from './ExempleService';
+import ContactService from './ContactService';
 import useRequest from '../../hooks/useRequest';
 
-interface PropsExempleGrid {
-  service?: ExempleService;
+interface PropsContactGrid {
+  service?: ContactService;
 }
 
-export default function ExempleGrid({ service = new ExempleService() }: PropsExempleGrid) {
+export default function ContactGrid({ service = new ContactService() }: PropsContactGrid) {
   const navigate = useNavigate();
 
   const { sendRequest, loading } = useRequest();
 
-  const [exemples, setExemples] = useState();
+  const [contacts, setContacts] = useState();
 
-  const getExemple = () => {
+  const getContact = () => {
     sendRequest({
-      promise: service.getExemple(),
-      success: { callback: (res) => setExemples(treckParseToCard(res)) },
+      promise: service.getContacts(),
+      success: { callback: (res) => setContacts(treckParseToCard(res)) },
     });
   };
 
@@ -40,8 +40,12 @@ export default function ExempleGrid({ service = new ExempleService() }: PropsExe
   };
 
   useEffect(() => {
-    getExemple();
+    getContact();
   }, []);
+
+  useEffect(() => {
+ console.log(contacts)
+  }, [contacts]);
 
   return (
     <Box width="100%" paddingTop={10} paddingLeft={10}>
@@ -51,14 +55,14 @@ export default function ExempleGrid({ service = new ExempleService() }: PropsExe
             <IconButton type="button" aria-label="search">
               <IconSearch />
             </IconButton>
-            <InputBase placeholder="Procurar Exemple" inputProps={{ 'aria-label': 'search google maps' }} />
+            <InputBase placeholder="Procurar Contact" inputProps={{ 'aria-label': 'search google maps' }} />
           </Box>
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
           <Button variant="text" onClick={() => navigate('new')} startIcon={<IconAdd />}>
-            Jornada
+            Contact
           </Button>
         </Stack>
-        {!!exemples && <CardGrid dataSource={exemples} />}
+        {!!contacts && <CardGrid dataSource={contacts} />}
       </Stack>
     </Box>
   );

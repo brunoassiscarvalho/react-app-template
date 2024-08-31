@@ -8,6 +8,16 @@ const customTheme: Theme = createTheme(
           variant: 'contained',
         },
       },
+      MuiInputLabel:{
+        styleOverrides:{
+          root: {
+            // Some CSS
+            fontSize: '0.9rem',
+          },
+        }
+  
+        
+      }
     },
     palette: {
       mode: 'dark',
@@ -23,6 +33,7 @@ const customTheme: Theme = createTheme(
         textAlign: 'center',
       },
     },
+    
   },
   localePtBR
 );

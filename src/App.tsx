@@ -3,7 +3,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { SnackbarProvider, ThemeProvider, CssBaseline } from '@mern-monorepo/ui-react-template';
 import Login from './pages/Login';
 import Home from './pages/Home';
-import ExempleGrid from './pages/exemple/ExempleGrid';
+import ContactGrid from './pages/contact/ContactGrid';
+import ContactForm from './pages/contact/ContactForm';
+import ContactDetail from './pages/contact/ContactDetail';
 
 const router = createBrowserRouter([
   {
@@ -21,10 +23,19 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <ExempleGrid />,
+        element: <ContactGrid />,
         handle: { title: 'Exemplo' },
       },
-     
+      {
+        path: 'new',
+        element: <ContactForm />,
+        handle: { title: 'Cadastrar Exemplo' },
+      },  
+      {
+        path: 'detail',
+        element: <ContactDetail />,
+        handle: { title: 'Detalhe do Exemplo' },
+      },     
     ],
   },
 ]);
